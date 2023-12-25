@@ -13,10 +13,8 @@ import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import no.vestlandetmc.BanFromClaim.BfcPlugin;
 import no.vestlandetmc.BanFromClaim.config.ClaimData;
 import no.vestlandetmc.BanFromClaim.config.Config;
-import no.vestlandetmc.BanFromClaim.config.Messages;
 import no.vestlandetmc.BanFromClaim.handler.LocationFinder;
 import no.vestlandetmc.BanFromClaim.handler.MessageHandler;
-import no.vestlandetmc.BanFromClaim.handler.ParticleHandler;
 
 public class GPListener implements Listener {
 
@@ -32,7 +30,6 @@ public class GPListener implements Listener {
 		final ClaimData claimData = new ClaimData();
 		final Player player = e.getPlayer();
 		final Claim claim = GriefPrevention.instance.dataStore.getClaimAt(locTo, true, null);
-		final ParticleHandler ph = new ParticleHandler(e.getTo());
 
 		if(player.hasPermission("bfc.bypass") || player.getGameMode().equals(GameMode.SPECTATOR)) { return; }
 
@@ -70,8 +67,6 @@ public class GPListener implements Listener {
 							player.teleport(safeLoc);
 						}
 
-						if(e.getTo().getBlockX() == e.getFrom().getBlockX()) { ph.drawCircle(1, true); }
-						else { ph.drawCircle(1, false); }
 					}
 
 				} else {
@@ -82,14 +77,11 @@ public class GPListener implements Listener {
 						player.teleport(safeLoc);
 					}
 
-					if(e.getTo().getBlockX() == e.getFrom().getBlockX()) { ph.drawCircle(1, true); }
-					else { ph.drawCircle(1, false); }
 				}
 
 				if(!MessageHandler.spamMessageClaim.contains(player.getUniqueId().toString())) {
 					player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 0.5f);
 					MessageHandler.sendMessage(player, "&cYou are banned from this claim.");
-					//MessageHandler.sendTitle(player, Messages.TITLE_MESSAGE, Messages.SUBTITLE_MESSAGE);
 					MessageHandler.spamMessageClaim.add(player.getUniqueId().toString());
 
 					Bukkit.getScheduler().runTaskLater(BfcPlugin.getInstance(), () -> {
