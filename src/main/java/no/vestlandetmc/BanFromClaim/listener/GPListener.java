@@ -2,10 +2,7 @@ package no.vestlandetmc.BanFromClaim.listener;
 
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -90,7 +87,9 @@ public class GPListener implements Listener {
 				}
 
 				if(!MessageHandler.spamMessageClaim.contains(player.getUniqueId().toString())) {
-					MessageHandler.sendTitle(player, Messages.TITLE_MESSAGE, Messages.SUBTITLE_MESSAGE);
+					player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 0.5f);
+					MessageHandler.sendMessage(player, "&cYou are banned from this claim.");
+					//MessageHandler.sendTitle(player, Messages.TITLE_MESSAGE, Messages.SUBTITLE_MESSAGE);
 					MessageHandler.spamMessageClaim.add(player.getUniqueId().toString());
 
 					Bukkit.getScheduler().runTaskLater(BfcPlugin.getInstance(), () -> {

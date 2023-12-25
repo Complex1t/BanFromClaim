@@ -88,11 +88,11 @@ public class BfclistCommand implements CommandExecutor {
 					if(i >= this.countFrom) {
 						final String bp = (String) listPlayers(claim.getID().toString()).toArray()[i];
 						final OfflinePlayer bannedPlayer = Bukkit.getOfflinePlayer(UUID.fromString(bp));
-						MessageHandler.sendMessage(player, "&6" + bannedPlayer.getName());
+						MessageHandler.sendMessage(player, "&c" + bannedPlayer.getName());
 
 						if(i == this.countTo) {
 							MessageHandler.sendMessage(player, "");
-							MessageHandler.sendMessage(player, "&e<--- [&6" + this.number + "\\" + totalPage + "&e] --->");
+							MessageHandler.sendMessage(player, "&7<--- [&f" + this.number + "/" + totalPage + "&7] --->");
 							break;
 						}
 
@@ -102,7 +102,7 @@ public class BfclistCommand implements CommandExecutor {
 
 				if(this.number == totalPage) {
 					MessageHandler.sendMessage(player, "");
-					MessageHandler.sendMessage(player, "&e<--- [&6" + totalPage + "\\" + totalPage + "&e] --->");
+					MessageHandler.sendMessage(player, "&7<--- [&f" + totalPage + "/" + totalPage + "&7] --->");
 				}
 			}
 		}
