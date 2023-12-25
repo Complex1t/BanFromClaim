@@ -25,12 +25,14 @@ public class GPListener implements Listener {
 
 	@EventHandler(ignoreCancelled = true)
 	public void onPlayerEnterClaim(PlayerMoveEvent e) {
-		final ClaimData claimData = new ClaimData();
+		if (e.getFrom().getBlock().equals(e.getTo().getBlock())) {
+			return;
+		}
+
 		final Location locFrom = e.getFrom();
 		final Location locTo = e.getTo();
 
-		if(locFrom.getBlock().equals(locTo.getBlock())) { return; }
-
+		final ClaimData claimData = new ClaimData();
 		final Player player = e.getPlayer();
 		final Claim claim = GriefPrevention.instance.dataStore.getClaimAt(locTo, true, null);
 		final ParticleHandler ph = new ParticleHandler(e.getTo());

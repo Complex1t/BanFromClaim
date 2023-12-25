@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>no.vestlandetmc.bfc</groupId>
-	<artifactId>BanFromClaim</artifactId>
+	<artifactId>BanFromClaim-Complex</artifactId>
 	<version>1.6.5</version>
 	<packaging>jar</packaging>
 
